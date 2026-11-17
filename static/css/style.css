@@ -425,3 +425,16 @@ input[type="submit"]:hover{
     text-align: center;
     margin-top: 20px;
 }
+.auth-card ul {
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.6;
+    padding-left: 25px;
+}
+
+.auth-card .helptext {
+    display: block;
+    font-size: 13px;
+    text-align: left;
+    color: #8B5E5E;
+}

@@ -1,24 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Blush n Crumb</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
-<body>
 
-    <h1>Login to your account</h1>
+<body class="auth-page">
 
-    <form method="POST">
-        {% csrf_token %}
+    <div class="auth-card">
+        <h1>Blush n Crumb</h1>
+        <h2>Welcome Back!</h2>
 
-        {{ form.as_p }}
+        <p class="auth-intro">
+            Sign in to continue enjoying your favourite freshly baked treats
+        </p>
 
-        <button type="submit">Login</button>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
 
-    <p>Don't have an account?
-        <a href="{% url 'register' %}">Register</a>
-    </p>
+            {{ form.as_p }}
+
+            <button type="submit" class="auth-button">
+                Sign In
+            </button>
+        </form>
+
+        <p class="auth-swith">
+            Don't have an account?
+            <a href="{% url 'register' %}" class="auth-link">Create Account</a>
+        </p>
+
+        <a hret="{% url 'index' %}" class="back-home">
+            Back to Home
+        </a>
+    </div>
+
+
+
 
 </body>
 </html>

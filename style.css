@@ -241,3 +241,67 @@ input[type="submit"]:hover{
         transform: translateY(0);
     }
 }
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.account-dropdown {
+    position: relative;
+}
+
+.account-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    color: #5C4033;
+}
+
+.account-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #B76E79;
+    border-radius: 50% ;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 170px;
+    background: #FFF6F7;
+    border: 1px solid #B76E79;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.dropdown-content a {
+    display: block;
+    padding:10px;
+    color: #5C4033;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background: #f5e1e5;
+}
+
+.account-dropdown:hover .dropdown-content,
+.account-dropdown:focus-within .dropdown-content {
+    display:block;
+}

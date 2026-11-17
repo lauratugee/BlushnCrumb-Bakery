@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bakery Products</title>
+</head>
+<body>
+    <h1>Bakery Products</h1>
+
+    {% for product in products %}
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+        <p>Price: {{product.price}}</p>
+        <p>Stock: {{product.stock }}</p>
+        <p>Type: {{ product.get_product_type_display }}</p>
+        <hr>
+    {% empty %}
+        <p>No products yet.</p>
+    {% endfor %}
+
+    <a href="{% url 'add_product' %}">Add another product</a>
+
+
+</body>
+</html>

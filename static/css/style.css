@@ -84,7 +84,8 @@ hr{
 }
 nav{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap:wrap;
     gap: 20px;
     background-color: #FADADD;
@@ -92,6 +93,26 @@ nav{
     border-radius: 10px;
     margin-bottom: 30px;
 }
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-links a {
+    text-align: center;
+    color: #5C4033;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #B76E79;
+    color: white;
+}
+
 nav a{
     flex-basis: 100px;
     flex-shrink: 1;
@@ -292,13 +313,16 @@ input[type="submit"]:hover{
 
 .dropdown-content a {
     display: block;
-    padding:10px;
+    padding: 10px;
+    margin: 0;
     color: #5C4033;
     text-decoration: none;
+    border-radius: 5px;
 }
 
 .dropdown-content a:hover {
-    background: #f5e1e5;
+    background-color: #f5e1e5;
+    color: #5C4033;
 }
 
 .account-dropdown:hover .dropdown-content,

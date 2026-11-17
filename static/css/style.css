@@ -86,7 +86,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
     gap: 20px;
     background-color: #FADADD;
     padding: 15px;
@@ -267,14 +267,21 @@ input[type="submit"]:hover{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 15px;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 25px;
+    flex-wrap: nowrap;
+    gap: 15px;
+    white-space: nowrap;
 }
 
+.nav-links a {
+    flex: 0 0 auto;
+}
 .account-dropdown {
     position: relative;
 }

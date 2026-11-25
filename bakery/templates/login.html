@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Blush n Crumb</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="auth-page">
@@ -28,12 +28,12 @@
             </button>
         </form>
 
-        <p class="auth-swith">
+        <p class="auth-switch">
             Don't have an account?
             <a href="{% url 'register' %}" class="auth-link">Create Account</a>
         </p>
 
-        <a hret="{% url 'index' %}" class="back-home">
+        <a href="{% url 'index' %}" class="back-home">
             Back to Home
         </a>
     </div>

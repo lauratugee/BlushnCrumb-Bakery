@@ -438,3 +438,26 @@ input[type="submit"]:hover{
     text-align: left;
     color: #8B5E5E;
 }
+/* Form validation errors */
+
+.errorlist {
+    color: #B00020;
+    background-color: #FFF0F0;
+    border: 1px solid #E6A0A0;
+    border-radius: 6px;
+    padding: 10px 10px 10px 30px;
+    margin: 8px 0 15px;
+    font-size: 13px;
+    text-align: left;
+    list-style-type: disc;
+}
+
+.auth-card .errorlist {
+    width: auto;
+}
+
+.auth-card input:focus {
+    outline: none;
+    border-color: #B76E79;
+    box-shadow: 0 0 4px rgba(183, 110, 121, 0.4);
+}

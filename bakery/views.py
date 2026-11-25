@@ -2,8 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout
-from .models import Product
-from .forms import ProductForm
+from .models import Product, Order
+from .forms import ProductForm, OrderForm, OrderItemFormSet
 
 
 def index(request):

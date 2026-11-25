@@ -33,6 +33,10 @@ class Order(models.Model):
         ('delivery', 'Delivery'),
         ('collection', 'Collection'),
     ]
+    order_type= models.CharField(
+        max_length=20,
+        choices=DELIVERY_CHOICES
+    )
     customer = models.ForeignKey(
         User,
         on_delete=models.CASCADE

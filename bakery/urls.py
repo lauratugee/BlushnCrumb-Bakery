@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
+from . import api_views
 
 urlpatterns=[
     path('',views.index,name='index'),
@@ -13,4 +14,8 @@ urlpatterns=[
     path('contact/', views.contact, name='contact'),
     path('my-orders/', views.my_orders, name='my_orders'),
     path('staff/orders/', views.manage_orders, name='manage_orders'),
+    path('api/products/', api_views.ProductListAPIView.as_view(), name='api_products'),
+    path('api/orders/', api_views.OrderCreateAPIView.as_view(), name='api_orders'),
+    path('api/my-orders/', api_views.MyOrdersAPIView.as_view(), name='api_my_orders'),
+    path('api-auth/', include('rest_framework.urls')),
 ]

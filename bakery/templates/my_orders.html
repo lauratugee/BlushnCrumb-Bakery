@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Blush n Crumb</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>My Orders</h1>
+    {% include "partials/site_nav.html" %}
+    <main class="order-list">
+        {% for order in orders %}
+            <article class="order-card">
+                <h2>Order #{{ order.id }}</h2>
+                <p>{{ order.order_date }} · {{ order.get_status_display }} · {{ order.get_order_type_display }}</p>
+                <ul>{% for item in order.items.all %}<li>{{ item.quantity }} × {{ item.product.name }} — Ksh {{ item.get_total }}</li>{% endfor %}</ul>
+            </article>
+        {% empty %}
+            <p>You have not placed an order yet.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>

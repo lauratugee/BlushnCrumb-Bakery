@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders | Blush n Crumb</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Manage Orders</h1>
+    {% include "partials/site_nav.html" %}
+    <main class="order-list">
+        {% for order in orders %}
+            <article class="order-card">
+                <h2>Order #{{ order.id }} · {{ order.get_status_display }}</h2>
+                <p>{{ order.customer.username }} · {{ order.order_date }} · {{ order.get_order_type_display }}</p>
+                {% if order.delivery_address %}<p>{{ order.delivery_address }}</p>{% endif %}
+                <ul>{% for item in order.items.all %}<li>{{ item.quantity }} × {{ item.product.name }} — Ksh {{ item.get_total }}</li>{% endfor %}</ul>
+                <a class="button-link" href="{% url 'admin:bakery_order_change' order.id %}">Update in admin</a>
+            </article>
+        {% empty %}
+            <p>No orders have been placed yet.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>

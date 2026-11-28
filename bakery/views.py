@@ -6,6 +6,8 @@ from .models import Product, Order
 from .forms import ProductForm, OrderForm, OrderItemFormSet
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import F
 
 
 
@@ -27,6 +29,7 @@ def products(request):
     return render(request, "products.html", {
         "products": all_products
     })
+@staff_member_required
 def add_product(request):
     if request.method == "POST":
         form=ProductForm(request.POST)
@@ -68,7 +71,8 @@ def user_login(request):
     return render(request,"login.html",{"form":form})
 
 def user_logout(request):
-    logout(request)
+    if request.method == 'POST':
+        logout(request)
     return redirect('index')
 
 
@@ -89,6 +93,7 @@ def place_order(request):
                 for item in items:
                     item.price = item.product.price
                     item.save()
+                    Product.objects.filter(pk=item.product_id).update(stock=F('stock') - item.quantity)
 
                 for item in formset.deleted_objects:
                     item.delete()
@@ -103,6 +108,18 @@ def place_order(request):
         "order_form": order_form,
         "formset": formset,
     })
+
+
+@login_required
+def my_orders(request):
+    orders = Order.objects.filter(customer=request.user).prefetch_related('items__product').order_by('-order_date', '-id')
+    return render(request, 'my_orders.html', {'orders': orders})
+
+
+@staff_member_required
+def manage_orders(request):
+    orders = Order.objects.select_related('customer').prefetch_related('items__product').order_by('-order_date', '-id')
+    return render(request, 'manage_orders.html', {'orders': orders})
 
             
 

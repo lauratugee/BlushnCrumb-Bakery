@@ -1,0 +1,26 @@
+databases:
+  - name: blushncrumb-db
+    databaseName: blushncrumb
+    user: blushncrumb
+    plan: free
+    region: frankfurt
+
+services:
+  - type: web
+    name: blushncrumb
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: bash build.sh
+    startCommand: gunicorn config.wsgi:application
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SECURE_SSL_REDIRECT
+        value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: blushncrumb-db
+          property: connectionString

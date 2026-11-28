@@ -3,6 +3,7 @@ venv/
 __pycache__/
 *.pyc
 *.egg-info/
+staticfiles/
 db.sqlite3
 .env
 .idea/

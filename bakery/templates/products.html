@@ -1,25 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bakery Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Products | Blush n Crumb</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Bakery Products</h1>
+    <h1>Our Bakery Products</h1>
+    <nav class="main-nav">
+        <div class="nav-links">
+            <a href="{% url 'index' %}">Home</a><a href="{% url 'products' %}">Products</a>
+            <a href="{% url 'gallery' %}">Gallery</a><a href="{% url 'place_order' %}">Order</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </div>
+        <div class="account-links"><a href="{% url 'login' %}">Login</a><a href="{% url 'register' %}">Create account</a></div>
+    </nav>
 
+    <main class="product-gallery">
     {% for product in products %}
-        <h3>{{product.name}}</h3>
-        <p>{{product.description}}</p>
-        <p>Price: {{product.price}}</p>
-        <p>Stock: {{product.stock }}</p>
-        <p>Type: {{ product.get_product_type_display }}</p>
-        <hr>
+        <article class="product">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+            <p class="price">Ksh {{ product.price }}</p>
+            <p>{{ product.get_product_type_display }}</p>
+        </article>
     {% empty %}
-        <p>No products yet.</p>
+        <p class="empty-state">No products yet.</p>
     {% endfor %}
+    </main>
 
-    <a href="{% url 'add_product' %}">Add another product</a>
-
-
+    <p><a class="button-link" href="{% url 'place_order' %}">Start an order</a></p>
 </body>
 </html>

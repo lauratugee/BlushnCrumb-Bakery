@@ -33,7 +33,7 @@ def add_product(request):
 
         if form.is_valid():
             form.save()
-            return redirect('products')
+            return render(request, "order_confirmation.html", {"order": order})
 
     else:
         form=ProductForm()

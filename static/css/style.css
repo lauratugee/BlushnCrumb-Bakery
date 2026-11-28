@@ -5,7 +5,9 @@ body{
     font-family: 'Poppins',  sans-serif;
     color: #5C4033;
     margin: 0;
-    padding: 20px;
+    padding: clamp(12px, 3vw, 28px);
+    min-width: 320px;
+    box-sizing: border-box;
 }
 h1{
     text-align: center;
@@ -58,7 +60,8 @@ form{
     background-color: #FFF5F5;
     padding: 25px;
     margin: 30px auto;
-    width: 60%;
+    width: min(100%, 720px);
+    box-sizing: border-box;
     border-radius: 12px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -454,6 +457,56 @@ input[type="submit"]:hover{
 
 .auth-card .errorlist {
     width: auto;
+}
+
+/* Django pages and small-screen layouts */
+fieldset.order-item {
+    border: 1px solid #E6C4C8;
+    border-radius: 10px;
+    margin: 16px 0;
+    padding: 12px 18px;
+}
+
+button, .button-link {
+    display: inline-block;
+    border: 0;
+    border-radius: 8px;
+    background: #B76E79;
+    color: white;
+    padding: 12px 18px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover, .button-link:hover { background: #8B5E5E; color: white; }
+.account-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.confirmation-card { max-width: 650px; margin: 10vh auto; padding: clamp(22px, 5vw, 48px); background: white; border-radius: 18px; text-align: center; box-shadow: 0 8px 28px rgba(92,64,51,.12); }
+.confirmation-mark { margin: 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #E8F3E8; color: #367A48; font-size: 32px; line-height: 56px; }
+.text-link { display: block; margin-top: 18px; }
+.empty-state { flex-basis: 100%; }
+
+@media (max-width: 700px) {
+    body { padding: 12px; }
+    h1 { font-size: clamp(30px, 8vw, 42px); }
+    nav, .main-nav { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; white-space: normal; gap: 4px; }
+    .nav-links a, nav a { flex-basis: auto; padding: 8px 10px; }
+    form { width: 100%; padding: 18px; }
+    .hero img { height: clamp(220px, 60vw, 400px); }
+    table { width: 100%; font-size: 14px; }
+    th, td { padding: 7px; }
+    .gallery { gap: 16px; margin: 28px auto; }
+    .flip-card { width: min(100%, 320px); height: 340px; }
+    .product { flex-basis: 100%; max-width: none; }
+    .auth-page { padding: 14px; }
+    .auth-card { padding: 24px 18px; }
+    .confirmation-card { margin: 5vh auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
 
 .auth-card input:focus {

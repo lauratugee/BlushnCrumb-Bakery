@@ -11,25 +11,42 @@
     <h1>My Orders</h1>
     {% include "partials/site_nav.html" %}
     <main class="order-list">
-        {% for order in orders %}
-            <article class="order-card">
-                <header class="order-card-header">
-                    <div>
-                        <h2>Order #{{ order.id }}</h2>
-                        <p class="order-meta">{{ order.order_date }} <span>·</span> {{ order.get_order_type_display }}</p>
-                    </div>
-                    <span class="status-badge status-{{ order.status }}">{{ order.get_status_display }}</span>
-                </header>
-                <ul class="order-items-list">
-                    {% for item in order.items.all %}
-                        <li><span><strong>{{ item.quantity }} ×</strong> {{ item.product.name }}</span><span>Ksh {{ item.get_total|floatformat:2 }}</span></li>
-                    {% endfor %}
-                </ul>
-                <footer class="order-card-total"><span>Order total</span><strong>Ksh {{ order.total|floatformat:2 }}</strong></footer>
-            </article>
-        {% empty %}
-            <p>You have not placed an order yet.</p>
-        {% endfor %}
+        {% if orders %}
+            <div class="orders-table-wrap">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Fulfilment</th>
+                            <th scope="col">Items</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <th scope="row">#{{ order.id }}</th>
+                                <td>{{ order.order_date }}</td>
+                                <td><span class="status-badge status-{{ order.status }}">{{ order.get_status_display }}</span></td>
+                                <td>{{ order.get_order_type_display }}</td>
+                                <td>
+                                    <ul class="table-order-items">
+                                        {% for item in order.items.all %}
+                                            <li>{{ item.quantity }} × {{ item.product.name }} <span>Ksh {{ item.get_total|floatformat:2 }}</span></li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td class="table-order-total">Ksh {{ order.total|floatformat:2 }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="empty-orders">You have not placed an order yet.</p>
+        {% endif %}
     </main>
 </body>
 </html>

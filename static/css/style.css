@@ -487,6 +487,26 @@ button:hover, .button-link:hover { background: #8B5E5E; color: white; }
 .text-link { display: block; margin-top: 18px; }
 .empty-state { flex-basis: 100%; }
 
+.order-page { max-width: 850px; margin: 0 auto; }
+.order-intro { text-align: center; margin: 34px 0 24px; }
+.order-intro h2 { margin: 8px 0; font-size: clamp(26px, 4vw, 36px); }
+.order-intro p { margin: 8px auto; }
+.eyebrow { color: #B76E79; font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.order-form { width: 100%; padding: clamp(18px, 4vw, 36px); }
+.order-section { margin-bottom: 28px; }
+.order-section h3 { text-align: left; font-style: normal; margin: 0 0 8px; color: #8B5E5E; }
+.order-section > p, .order-form p { text-align: left; margin: 8px 0 16px; }
+.section-hint { color: #80645D; font-size: .95rem; }
+.order-item { background: #FFFAFA; }
+.order-item legend { padding: 0 8px; color: #8B5E5E; font-weight: 600; }
+.order-item p { margin: 8px 0; }
+.order-item label, .order-form label { display: block; font-weight: 600; }
+.order-form textarea { min-height: 78px; resize: vertical; }
+.secondary-button { background: #F4E2E4; color: #754B50; }
+.secondary-button:hover { background: #E9CCD0; color: #5C4033; }
+.submit-order { width: 100%; margin-top: 4px; }
+.confirmation-card .button-link { margin-right: 0; }
+
 @media (max-width: 700px) {
     body { padding: 12px; }
     h1 { font-size: clamp(30px, 8vw, 42px); }

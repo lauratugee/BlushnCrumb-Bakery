@@ -12,6 +12,12 @@ from django.db import transaction
 def index(request):
     return render(request,"index.html")
 
+def gallery(request):
+    return render(request, "gallery.html")
+
+def contact(request):
+    return render(request, "contact.html")
+
 def proj_test(request):
     return render(request,"proj_test.html")
 

@@ -69,41 +69,33 @@ def user_logout(request):
 
 @login_required
 def place_order(request):
-
     if request.method == "POST":
         order_form = OrderForm(request.POST)
+        order = order_form.save(commit=False) if order_form.is_valid() else Order()
+        order.customer = request.user
+        formset = OrderItemFormSet(request.POST, instance=order)
 
-        if order_form.is_valid():
-            order=order_form.save(commit=False)
-            order.customer = request.user
-            order.save()
+        if order_form.is_valid() and formset.is_valid():
+            with transaction.atomic():
+                order.save()
+                items = formset.save(commit=False)
 
-            formset = OrderItemFormSet(
-                request.POST,
-                instance=order
-            )
-            if formset.is_valid():
-                with transaction.atomic():
-                    items=formset.save(commit=False)
+                for item in items:
+                    item.price = item.product.price
+                    item.save()
 
-                    for item in items:
-                        item.price=item.product.price
-                        item.save()
+                for item in formset.deleted_objects:
+                    item.delete()
 
-                    for item in formset.deleted_objects:
-                        item.delete()
-
-                return redirect('products')
-            order.delete()
+            return redirect('products')
 
     else:
         order_form = OrderForm()
         formset = OrderItemFormSet()
 
-    return render(request,"place_order.html",{
-        "order_form":order_form,
-        "formset":formset,
-
+    return render(request, "place_order.html", {
+        "order_form": order_form,
+        "formset": formset,
     })
 
             

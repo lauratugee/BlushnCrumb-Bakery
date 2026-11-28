@@ -20,5 +20,7 @@ OrderItemFormSet = inlineformset_factory(
     OrderItem,
     fields=['product', 'quantity'],
     extra=1,
-    can_delete=True
+    can_delete=True,
+    min_num=1,
+    validate_min=True,
 )

@@ -15,10 +15,10 @@ class OrderForm(forms.ModelForm):
         model=Order
         fields=['order_type', 'delivery_address']
 
-    OrderItemFormSet = inlineformset_factory(
-        Order,
-        OrderItem,
-        fields=['product', 'quantity'],
-        extra=1,
-        can_delete=True
-    )
+OrderItemFormSet = inlineformset_factory(
+    Order,
+    OrderItem,
+    fields=['product', 'quantity'],
+    extra=1,
+    can_delete=True
+)

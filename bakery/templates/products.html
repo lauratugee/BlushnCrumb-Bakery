@@ -9,14 +9,7 @@
 </head>
 <body>
     <h1>Our Bakery Products</h1>
-    <nav class="main-nav">
-        <div class="nav-links">
-            <a href="{% url 'index' %}">Home</a><a href="{% url 'products' %}">Products</a>
-            <a href="{% url 'gallery' %}">Gallery</a><a href="{% url 'place_order' %}">Order</a>
-            <a href="{% url 'contact' %}">Contact</a>
-        </div>
-        <div class="account-links"><a href="{% url 'login' %}">Login</a><a href="{% url 'register' %}">Create account</a></div>
-    </nav>
+    {% include "partials/site_nav.html" %}
 
     <main class="product-gallery">
     {% for product in products %}

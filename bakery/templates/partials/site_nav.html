@@ -1,0 +1,32 @@
+<nav class="main-nav" aria-label="Main navigation">
+    <div class="nav-links">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'gallery' %}">Gallery</a>
+        <a href="{% url 'place_order' %}">Order</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </div>
+    <div class="account-dropdown">
+        <button class="account-button" type="button" aria-label="Account menu">
+            <span class="account-icon" aria-hidden="true">👤</span>
+        </button>
+        <div class="dropdown-content">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}</p>
+                <a href="{% url 'my_orders' %}">My orders</a>
+                {% if user.is_staff %}
+                    <a href="{% url 'add_product' %}">Add a product</a>
+                    <a href="{% url 'manage_orders' %}">Manage orders</a>
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
+                <form class="logout-form" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'register' %}">Create account</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

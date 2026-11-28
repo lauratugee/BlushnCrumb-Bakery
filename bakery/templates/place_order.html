@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place an Order | Blush n Crumb</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Blush n Crumb</h1>
+    <h3>Freshly baked, made for you</h3>
+    {% include "partials/site_nav.html" %}
+
+    <main class="order-page">
+    <header class="order-intro">
+        <span class="eyebrow">A little sweetness, your way</span>
+        <h2>Build your bakery order</h2>
+        <p>Choose how you’d like to receive your order, then add the treats you love.</p>
+    </header>
+
+    <form method="post" class="order-form">
+        {% csrf_token %}
+        <section class="order-section">
+            <h3>How would you like to get it?</h3>
+            {{ order_form.as_p }}
+        </section>
+
+        {{ formset.management_form }}
+        {% if formset.non_form_errors %}
+            <div class="form-errors">{{ formset.non_form_errors }}</div>
+        {% endif %}
+
+        <section class="order-section">
+            <h3>Your treats</h3>
+            <p class="section-hint">Add at least one product. You can add more products below.</p>
+        <div id="order-items">
+        {% for item_form in formset %}
+            <fieldset class="order-item">
+                <legend>Product choice</legend>
+                {{ item_form.as_p }}
+            </fieldset>
+        {% endfor %}
+        </div>
+
+        <template id="empty-order-item">
+            <fieldset class="order-item">
+                <legend>Product choice</legend>
+                {{ formset.empty_form.as_p }}
+            </fieldset>
+        </template>
+
+        <button type="button" class="secondary-button" id="add-product">＋ Add another product</button>
+        </section>
+
+        <button type="submit" class="submit-order">Place my order</button>
+    </form>
+    </main>
+    <script>
+        const addButton = document.getElementById("add-product");
+        const items = document.getElementById("order-items");
+        const template = document.getElementById("empty-order-item");
+        const totalForms = document.getElementById("id_{{ formset.prefix }}-TOTAL_FORMS");
+
+        addButton.addEventListener("click", () => {
+            const index = Number(totalForms.value);
+            const newItem = template.innerHTML.replaceAll("__prefix__", index);
+            items.insertAdjacentHTML("beforeend", newItem);
+            totalForms.value = index + 1;
+        });
+    </script>
+</body>
+</html>

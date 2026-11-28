@@ -482,6 +482,9 @@ button, .button-link {
 
 button:hover, .button-link:hover { background: #8B5E5E; color: white; }
 .account-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.logout-form { width: auto; padding: 0; margin: 0; box-shadow: none; background: none; }
+.logout-form button { background: transparent; color: #5C4033; padding: 8px 10px; }
+.logout-form button:hover { background: #F4E2E4; color: #5C4033; }
 .confirmation-card { max-width: 650px; margin: 10vh auto; padding: clamp(22px, 5vw, 48px); background: white; border-radius: 18px; text-align: center; box-shadow: 0 8px 28px rgba(92,64,51,.12); }
 .confirmation-mark { margin: 0 auto; width: 56px; height: 56px; border-radius: 50%; background: #E8F3E8; color: #367A48; font-size: 32px; line-height: 56px; }
 .text-link { display: block; margin-top: 18px; }
@@ -506,6 +509,10 @@ button:hover, .button-link:hover { background: #8B5E5E; color: white; }
 .secondary-button:hover { background: #E9CCD0; color: #5C4033; }
 .submit-order { width: 100%; margin-top: 4px; }
 .confirmation-card .button-link { margin-right: 0; }
+.order-list { max-width: 900px; margin: 24px auto; }
+.order-card { background: #fff; border-radius: 14px; padding: 20px; margin: 16px 0; box-shadow: 0 5px 15px rgba(0,0,0,.08); }
+.order-card h2, .order-card p { text-align: left; }
+.order-card ul { line-height: 1.8; }
 
 @media (max-width: 700px) {
     body { padding: 12px; }

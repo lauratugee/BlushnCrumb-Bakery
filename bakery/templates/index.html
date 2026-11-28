@@ -14,32 +14,7 @@
     <h3>Comfort in Every Bite</h3>
 
 
-    <nav class="main-nav">
-        <div class="nav-links">
-            <a href="{% url 'index'%}">Home</a>
-            <a href="{% url 'products' %}">Products</a>
-            <a href="{% url 'gallery' %}">Gallery</a>
-            <a href="{% url 'place_order' %}">Order</a>
-            <a href="{% url 'contact' %}">Contact</a>
-        </div>
-
-        <div class="account-dropdown">
-            <button class="account-dropdown" type="button">
-                <span class="account-icon">👤</span>
-            </button>
-
-            <div class="dropdown-content">
-                {% if user.is_authenticated %}
-                    <p>Welcome, {{ user.username }}! </p>
-                    <a href="{% url 'logout' %}">Logout</a>
-
-                {% else %}
-                    <a href="{% url 'login' %}">Login</a>
-                    <a href="{% url 'register' %}">Register</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+    {% include "partials/site_nav.html" %}
 
     <h2>Welcome to Blush n Crumb Bakery!</h2>
 

@@ -10,3 +10,6 @@ urlpatterns=[
     path('logout/',views.user_logout,name='logout'),
     path('place-order/', views.place_order, name='place_order'),
 ]
+
+    path('gallery/', views.gallery, name='gallery'),
+    path('contact/', views.contact, name='contact'),

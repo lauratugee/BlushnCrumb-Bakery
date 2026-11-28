@@ -10,6 +10,10 @@ class ProductForm(forms.ModelForm):
         fields='__all__'
 
 class OrderForm(forms.ModelForm):
+    delivery_address = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={"rows": 3, "placeholder": "Enter your delivery address"}),
+    )
 
     class Meta:
         model=Order

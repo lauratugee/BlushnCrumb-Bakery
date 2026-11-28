@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout
 from .models import Product, Order
 from .forms import ProductForm, OrderForm, OrderItemFormSet
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 
 
@@ -63,8 +65,7 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
-from django.contrib.auth.decorators import login_required
-from django.db import transaction
+
 
 @login_required
 def place_order(request):
@@ -89,19 +90,21 @@ def place_order(request):
                         item.price=item.product.price
                         item.save()
 
-                    for item in formset.deleted_items:
+                    for item in formset.deleted_objects:
                         item.delete()
 
                 return redirect('products')
             order.delete()
 
-        else:
-            order_form = OrderForm()
-            formset = OrderItemFormSet()
+    else:
+        order_form = OrderForm()
+        formset = OrderItemFormSet()
 
-        return render(request,"place_order.html",{
-            "order_form":order_form,
-        })
+    return render(request,"place_order.html",{
+        "order_form":order_form,
+        "formset":formset,
+
+    })
 
             
 

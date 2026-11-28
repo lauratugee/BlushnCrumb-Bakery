@@ -15,7 +15,8 @@
             <article class="order-card">
                 <h2>Order #{{ order.id }}</h2>
                 <p>{{ order.order_date }} · {{ order.get_status_display }} · {{ order.get_order_type_display }}</p>
-                <ul>{% for item in order.items.all %}<li>{{ item.quantity }} × {{ item.product.name }} — Ksh {{ item.get_total }}</li>{% endfor %}</ul>
+                <ul>{% for item in order.items.all %}<li>{{ item.quantity }} × {{ item.product.name }} — Ksh {{ item.get_total|floatformat:2 }}</li>{% endfor %}</ul>
+                <p class="order-total">Total: <strong>Ksh {{ order.total|floatformat:2 }}</strong></p>
             </article>
         {% empty %}
             <p>You have not placed an order yet.</p>

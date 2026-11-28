@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from decimal import Decimal
 
 class Product(models.Model):
 
@@ -53,6 +54,10 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.id} - {self.customer.username}"
+
+    @property
+    def total(self):
+        return sum((item.get_total() for item in self.items.all()), Decimal('0.00'))
 
 class OrderItem(models.Model):
 

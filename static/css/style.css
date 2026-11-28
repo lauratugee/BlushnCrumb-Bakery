@@ -513,6 +513,11 @@ button:hover, .button-link:hover { background: #8B5E5E; color: white; }
 .order-card { background: #fff; border-radius: 14px; padding: 20px; margin: 16px 0; box-shadow: 0 5px 15px rgba(0,0,0,.08); }
 .order-card h2, .order-card p { text-align: left; }
 .order-card ul { line-height: 1.8; }
+.confirmation-items { margin: 26px auto; padding: 18px; max-width: 480px; border-radius: 12px; background: #FFF6F7; text-align: left; }
+.confirmation-items h2 { text-align: center; }
+.confirmation-items ul { list-style: none; padding: 0; }
+.confirmation-items li, .order-total { display: flex; justify-content: space-between; gap: 18px; border-bottom: 1px solid #E6C4C8; padding: 9px 0; }
+.confirmation-items .order-total { border: 0; font-size: 1.1rem; }
 
 @media (max-width: 700px) {
     body { padding: 12px; }

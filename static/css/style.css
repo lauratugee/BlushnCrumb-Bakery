@@ -513,6 +513,17 @@ button:hover, .button-link:hover { background: #8B5E5E; color: white; }
 .order-card { background: #fff; border-radius: 14px; padding: 20px; margin: 16px 0; box-shadow: 0 5px 15px rgba(0,0,0,.08); }
 .order-card h2, .order-card p { text-align: left; }
 .order-card ul { line-height: 1.8; }
+.order-card { border: 1px solid #F0DADD; padding: clamp(18px, 3vw, 28px); }
+.order-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.order-card-header h2 { margin: 0; }
+.order-card .order-meta { margin: 6px 0 0; color: #80645D; font-size: .92rem; }
+.status-badge { flex: 0 0 auto; border-radius: 999px; padding: 6px 12px; background: #F4E2E4; color: #754B50; font-size: .85rem; font-weight: 600; }
+.status-processing { background: #FFF0D8; color: #805A1C; }
+.status-complete { background: #E8F3E8; color: #367A48; }
+.status-canceled { background: #FCE5E5; color: #A13232; }
+.order-items-list { list-style: none; padding: 12px 0; margin: 16px 0 0; border-top: 1px solid #F0DADD; }
+.order-items-list li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; }
+.order-card-total { display: flex; justify-content: space-between; gap: 16px; padding-top: 14px; border-top: 1px solid #F0DADD; color: #754B50; }
 .confirmation-items { margin: 26px auto; padding: 18px; max-width: 480px; border-radius: 12px; background: #FFF6F7; text-align: left; }
 .confirmation-items h2 { text-align: center; }
 .confirmation-items ul { list-style: none; padding: 0; }
@@ -535,6 +546,8 @@ button:hover, .button-link:hover { background: #8B5E5E; color: white; }
     .auth-page { padding: 14px; }
     .auth-card { padding: 24px 18px; }
     .confirmation-card { margin: 5vh auto; }
+    .order-card-header { flex-direction: column; }
+    .order-items-list li { align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {

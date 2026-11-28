@@ -13,10 +13,19 @@
     <main class="order-list">
         {% for order in orders %}
             <article class="order-card">
-                <h2>Order #{{ order.id }}</h2>
-                <p>{{ order.order_date }} · {{ order.get_status_display }} · {{ order.get_order_type_display }}</p>
-                <ul>{% for item in order.items.all %}<li>{{ item.quantity }} × {{ item.product.name }} — Ksh {{ item.get_total|floatformat:2 }}</li>{% endfor %}</ul>
-                <p class="order-total">Total: <strong>Ksh {{ order.total|floatformat:2 }}</strong></p>
+                <header class="order-card-header">
+                    <div>
+                        <h2>Order #{{ order.id }}</h2>
+                        <p class="order-meta">{{ order.order_date }} <span>·</span> {{ order.get_order_type_display }}</p>
+                    </div>
+                    <span class="status-badge status-{{ order.status }}">{{ order.get_status_display }}</span>
+                </header>
+                <ul class="order-items-list">
+                    {% for item in order.items.all %}
+                        <li><span><strong>{{ item.quantity }} ×</strong> {{ item.product.name }}</span><span>Ksh {{ item.get_total|floatformat:2 }}</span></li>
+                    {% endfor %}
+                </ul>
+                <footer class="order-card-total"><span>Order total</span><strong>Ksh {{ order.total|floatformat:2 }}</strong></footer>
             </article>
         {% empty %}
             <p>You have not placed an order yet.</p>

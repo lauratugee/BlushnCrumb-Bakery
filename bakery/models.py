@@ -35,7 +35,8 @@ class Order(models.Model):
     ]
     order_type= models.CharField(
         max_length=20,
-        choices=DELIVERY_CHOICES
+        choices=DELIVERY_CHOICES,
+        default='collection',
     )
     customer = models.ForeignKey(
         User,

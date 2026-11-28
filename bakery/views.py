@@ -33,7 +33,7 @@ def add_product(request):
 
         if form.is_valid():
             form.save()
-            return render(request, "order_confirmation.html", {"order": order})
+            return redirect('products')
 
     else:
         form=ProductForm()
@@ -93,7 +93,7 @@ def place_order(request):
                 for item in formset.deleted_objects:
                     item.delete()
 
-            return redirect('products')
+            return render(request, "order_confirmation.html", {"order": order})
 
     else:
         order_form = OrderForm()
